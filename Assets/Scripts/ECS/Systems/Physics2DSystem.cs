@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using Unity.Burst;
+using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -17,6 +18,7 @@ public class Physics2DSystem : JobComponentSystem
             {
                 translation.Value.z = 0;
             }
-        }).Schedule(inputDeps);
+        }).WithBurst(FloatMode.Fast, FloatPrecision.Low)
+        .Schedule(inputDeps);
     }
 }

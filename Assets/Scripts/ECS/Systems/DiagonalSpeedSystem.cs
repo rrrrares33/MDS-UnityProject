@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using Unity.Burst;
+using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 
@@ -16,6 +17,7 @@ public class DiagonalSpeedSystem : JobComponentSystem
                 movementData.Horizontal *= multiplier;
                 movementData.Vertical *= multiplier;
             }
-        }).Schedule(inputDeps);
+        }).WithBurst(FloatMode.Fast, FloatPrecision.Low)
+        .Schedule(inputDeps);
     }
 }

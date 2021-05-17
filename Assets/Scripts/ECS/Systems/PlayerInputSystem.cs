@@ -1,6 +1,6 @@
-﻿using Unity.Entities;
+﻿using Unity.Burst;
+using Unity.Entities;
 using Unity.Jobs;
-using Unity.Mathematics;
 using UnityEngine;
 
 [AlwaysSynchronizeSystem]
@@ -16,7 +16,8 @@ public class PlayerInputSystem : JobComponentSystem
             movementData.Vertical = Input.GetKey(inputData.MoveUp) ? 1
                                   : Input.GetKey(inputData.MoveDown) ? -1
                                   : 0;
-        }).Run();
+        }).WithBurst(FloatMode.Fast, FloatPrecision.Low)
+        .Run();
 
         return default;
     }

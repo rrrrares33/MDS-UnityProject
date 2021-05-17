@@ -1,8 +1,8 @@
-﻿using Unity.Entities;
+﻿using Unity.Burst;
+using Unity.Entities;
 using Unity.Jobs;
 using Unity.Physics;
 
-[AlwaysSynchronizeSystem]
 [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
 public class MovementSystem : JobComponentSystem
 {
@@ -14,6 +14,7 @@ public class MovementSystem : JobComponentSystem
         {
             velocity.Linear.x += movementData.Horizontal * movementData.Speed * deltaTime;
             velocity.Linear.y += movementData.Vertical * movementData.Speed * deltaTime;
-        }).Schedule(inputDeps);
+        }).WithBurst(FloatMode.Fast, FloatPrecision.Low)
+        .Schedule(inputDeps);
     }
 }

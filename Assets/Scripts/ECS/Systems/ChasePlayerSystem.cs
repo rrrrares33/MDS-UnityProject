@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -29,6 +30,8 @@ public class ChasePlayerSystem : JobComponentSystem
                 movementData.Horizontal = math.sign(differenceX);
                 movementData.Vertical = math.sign(differenceY);
             }
-        }).WithDisposeOnCompletion(playerTranslations).Schedule(inputDeps);
+        }).WithDisposeOnCompletion(playerTranslations)
+        .WithBurst(FloatMode.Fast, FloatPrecision.Low)
+        .Schedule(inputDeps);
     }
 }
