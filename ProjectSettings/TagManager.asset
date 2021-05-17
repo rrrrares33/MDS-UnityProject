@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Blocking
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Doors
+    uniqueID: 2035332971
+    locked: 0
+  - name: Characters
+    uniqueID: 2869683745
     locked: 0
