@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [GenerateAuthoringComponent]
-public class FollowCameraData : IComponentData
+public class CameraFollowData : IComponentData
 {
     public Camera Value;
 }

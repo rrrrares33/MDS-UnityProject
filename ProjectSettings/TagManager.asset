@@ -44,6 +44,12 @@ TagManager:
   - name: Doors
     uniqueID: 2035332971
     locked: 0
-  - name: Characters
-    uniqueID: 2869683745
+  - name: Character Bottom
+    uniqueID: 2331378063
+    locked: 0
+  - name: Obstacles
+    uniqueID: 248264613
+    locked: 0
+  - name: Character Top
+    uniqueID: 4180148123
     locked: 0
