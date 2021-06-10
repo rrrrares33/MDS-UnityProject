@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - Blocking
+  - BlockingLayer
   - 
   - 
   - 
@@ -41,15 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Doors
-    uniqueID: 2035332971
+  - name: Floor
+    uniqueID: 1617879503
     locked: 0
-  - name: Character Bottom
-    uniqueID: 2331378063
+  - name: Walls
+    uniqueID: 1957802511
     locked: 0
-  - name: Obstacles
-    uniqueID: 248264613
-    locked: 0
-  - name: Character Top
-    uniqueID: 4180148123
+  - name: Units
+    uniqueID: 1377686831
     locked: 0
