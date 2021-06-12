@@ -6,7 +6,7 @@ namespace Gameplay
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class CharacterController2D : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private int startHealth = 6;
         [SerializeField] private int startDamage = 1;

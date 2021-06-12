@@ -8,7 +8,7 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private CharacterController2D player;
+        [SerializeField] private PlayerController player;
         [SerializeField] private TextMeshProUGUI healthUI;
     
         private void Update()
