@@ -11,7 +11,7 @@ namespace Gameplay
     {
         [SerializeField] private float movementSpeed = 5.0f;
         [SerializeField] private float stoppingDistance = 2.0f;
-        [SerializeField] private float retreatDistance = 1.0f;
+        [SerializeField] private float retreatDistance = 1.8f;
         [SerializeField] private float startAttackInterval = 2.0f;
         [SerializeField] private GameObject target;
     

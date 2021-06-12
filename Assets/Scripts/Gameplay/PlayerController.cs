@@ -15,12 +15,13 @@ namespace Gameplay
         private Animator _animator;
         private Rigidbody2D _rb;
         private SpriteRenderer _renderer;
-    
-        private int _health;
+
         private int _damage;
         private float _movementSpeed;
 
         private Vector2 _moveDirection;
+
+        public int Health { get; private set; }
 
         private void Start()
         {
@@ -28,7 +29,7 @@ namespace Gameplay
             _rb = GetComponent<Rigidbody2D>();
             _renderer = GetComponent<SpriteRenderer>();
 
-            _health = startHealth;
+            Health = startHealth;
             _damage = startDamage;
             _movementSpeed = startMovementSpeed;
         }
@@ -60,11 +61,6 @@ namespace Gameplay
         {
             _rb.velocity = Time.deltaTime * _movementSpeed * _moveDirection;
             _animator.SetBool(AnimatorParams.IsRunning, !_rb.velocity.Equals(Vector2.zero));
-        }
-
-        public int GetHealth()
-        {
-            return _health;
         }
     }
 }

@@ -5,8 +5,12 @@ namespace Data.SimpleRandomWalk
     [CreateAssetMenu(fileName = "SimpleRandomWalkParams_", menuName = "PCG/SimpleRandomWalkData")]
     public class SimpleRandomWalkData : ScriptableObject
     {
-        public int iterations = 10;
-        public int walkLength = 10;
-        public bool startEachIterationRandomly = true;
+        [SerializeField] private int iterations = 10;
+        [SerializeField] private int walkLength = 10;
+        [SerializeField] private bool startEachIterationRandomly = true;
+
+        public int Iterations => iterations;
+        public int WalkLength => walkLength;
+        public bool StartEachIterationRandomly => startEachIterationRandomly;
     }
 }

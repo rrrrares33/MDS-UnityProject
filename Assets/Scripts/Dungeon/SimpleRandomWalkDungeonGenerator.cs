@@ -25,13 +25,13 @@ namespace Dungeon
             var floorPositions = new HashSet<Vector2Int>();
             var currentPosition = position;
         
-            for (var _ = 0; _ < simpleRandomWalkParams.iterations; ++_)
+            for (var _ = 0; _ < simpleRandomWalkParams.Iterations; ++_)
             {
                 floorPositions.UnionWith(
-                    ProceduralGeneration.SimpleRandomWalk(currentPosition, simpleRandomWalkParams.walkLength)
+                    ProceduralGeneration.SimpleRandomWalk(currentPosition, simpleRandomWalkParams.WalkLength)
                 );
             
-                if (simpleRandomWalkParams.startEachIterationRandomly)
+                if (simpleRandomWalkParams.StartEachIterationRandomly)
                 {
                     currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
                 }
