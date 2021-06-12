@@ -1,0 +1,152 @@
+﻿@startuml
+
+() MonoBehaviour
+<> diamond
+
+class ProceduralGeneration
+{
+    +SimpleRandomWalk(startPosition: Vector2Int, walkLength: int): IEnumerable<Vector2Int>
+    +RandomWalkCorridor(startPosition: Vector2Int, corridorLength: int): List<Vector2Int>
+    +BinarySpacePartitioning(spaceToSplit: BoundsInt, minWidth: int, minHeight: int, minLengthMultiplier: int): ICollection<BoundsInt>
+    -Split(vertical: bool, roomQueue: Queue<BoundsInt>, room: BoundsInt, minLength: int): void
+}
+class Direction2D
+{
+    -Right: Vector2Int
+    -Up: Vector2Int
+    -Left: Vector2Int
+    -Down: Vector2Int
+    +CardinalDirectionList: List<Vector2Int>
+    +DiagonalDirectionList: List<Vector2Int>
+    +TotalDirectionList: List<Vector2Int>
+    
+    +GetRandomCardinalDirection(): Vector2Int
+}
+
+abstract class DungeonGenerator
+{
+    #visualizer: TilemapVisualizer
+    #startPosition: Vector2Int
+    
+    +GenerateDungeon(): void
+    #RunProceduralGeneration(): void
+}
+
+class SimpleRandomWalkDungeonGenerator
+{
+    #simpleRandomWalkData: SimpleRandomWalkData
+    
+    #RunProceduralGeneration(): void
+    #GetRandomWalkPath(position: Vector2Int, simpleRandomWalkParams: SimpleRandomWalkData): ICollection<Vector2Int>
+}
+
+class SimpleRandomWalkData
+{
+    -iterations: int
+    -walkLength: int
+    -startEachIterationRandomly: bool
+    
+    +Iterations(): int
+    +WalkLength(): int
+    +StartEachIterationRandomly(): bool
+}
+
+class CorridorFirstDungeonGenerator
+{
+    -corridorLength: int
+    -corridorCount: int
+    -roomPercent: float
+    
+    #RunProceduralGeneration(): void
+    -GenerateCorridorFirst(): void
+    -CreateCorridors(floorPositions: ISet<Vector2Int>, possibleRoomPositions: ISet<Vector2Int>): void
+    -FindDeadEnds(floorPositions: ICollection<Vector2Int>): IEnumerable<Vector2Int>
+    -CreateRooms(possibleRoomPositions: ICollection<Vector2Int>): ISet<Vector2Int>
+    -CreateRoomsAtDeadEnds(roomFloors: ISet<Vector2Int>, deadEnds: IEnumerable<Vector2Int>): void
+}
+
+class RoomFirstDungeonGenerator
+{
+    -minRoomWidth: int
+    -minRoomHeight: int
+    -dungeonWidth: int
+    -dungeonHeight: int
+    -offset: int
+    -useRandomWalk: bool
+    -fillDungeonArea: bool
+    
+    #RunProceduralGeneration(): void
+    -CreateRooms(): void
+    -CreateSimpleRooms(roomList: IEnumerable<BoundsInt>): HashSet<Vector2Int>
+    -CreateRandomRooms(roomList: IEnumerable<BoundsInt>): HashSet<Vector2Int>
+    -ConnectRooms(roomCenters: IList<Vector2Int>): IEnumerable<Vector2Int>
+    -FindClosestPointTo(currentRoomCenter: Vector2Int, roomCenters: IEnumerable<Vector2Int>): Vector2Int
+    -CreateCorridor(currentRoomCenter: Vector2Int, destination: Vector2Int): IEnumerable<Vector2Int>
+}
+
+class TilemapVisualizer
+{
+    -floorTilemap: Tilemap
+    -wallTilemap: Tilemap
+    -floorTiles: List<TileBase>
+    -wallTop: List<TileBase>
+    -wallLeft: List<TileBase>
+    -wallRight: List<TileBase>
+    -wallBottom: List<TileBase>
+    -wallFull: List<TileBase>
+    -wallInnerCornerDownLeft: List<TileBase>
+    -wallInnerCornerDownRight: List<TileBase>
+    -wallDiagonalCornerDownLeft: List<TileBase>
+    -wallDiagonalCornerDownRight: List<TileBase>
+    -wallDiagonalCornerUpLeft: List<TileBase>
+    -wallDiagonalCornerUpRight: List<TileBase>
+    
+    +PaintFloorTiles(floorPositions: IEnumerable<Vector2Int>): void
+    -PaintTiles(tilemap: Tilemap, tiles: IReadOnlyList<TileBase>, positions: IEnumerable<Vector2Int>): void
+    -PaintSingleTile(tilemap: Tilemap, tile: TileBase, position: Vector2Int): void
+    ~PaintSingleBasicWall(wallPosition: Vector2Int, binaryType: string): void
+    ~PaintSingleCornerWall(wallPosition: Vector2Int, binaryType: string): void
+    +Clear(): void
+}
+
+class WallGenerator
+{
+    +CreateWalls(visualizer: TilemapVisualizer, floorPositions: ICollection<Vector2Int>): void
+    -FindWallsIn(floorPositions: ICollection<Vector2Int>, directions: IReadOnlyCollection<Vector2Int>): IEnumerable<Vector2Int>
+    -CreateBasicWalls(visualizer: TilemapVisualizer, wallPositions: IEnumerable<Vector2Int>, floorPositions: ICollection<Vector2Int>): void
+    -CreateCornerWalls(visualizer: TilemapVisualizer, wallPositions: IEnumerable<Vector2Int>, floorPositions: ICollection<Vector2Int>): void
+}
+
+class WallTypes
+{
+    +WallTop: HashSet<int>
+    +WallLeft: HashSet<int>
+    +WallRight: HashSet<int>
+    +WallBottom: HashSet<int>
+    +WallBottom: HashSet<int>
+    +WallInnerCornerDownLeft: HashSet<int>
+    +WallInnerCornerDownRight: HashSet<int>
+    +WallDiagonalCornerDownLeft: HashSet<int>
+    +WallDiagonalCornerDownRight: HashSet<int>
+    +WallDiagonalCornerUpLeft: HashSet<int>
+    +WallDiagonalCornerUpRight: HashSet<int>
+    +WallBottomEightDirections: HashSet<int>
+    +WallFullEightDirections: HashSet<int>
+}
+
+TilemapVisualizer <|-- MonoBehaviour
+TilemapVisualizer -> WallTypes
+DungeonGenerator "1" *- "1" TilemapVisualizer
+SimpleRandomWalkDungeonGenerator <|-- DungeonGenerator
+SimpleRandomWalkData "1" -* "1" SimpleRandomWalkDungeonGenerator
+CorridorFirstDungeonGenerator <|-- SimpleRandomWalkDungeonGenerator
+RoomFirstDungeonGenerator <|-- SimpleRandomWalkDungeonGenerator
+diamond <-- SimpleRandomWalkDungeonGenerator
+CorridorFirstDungeonGenerator -> diamond
+diamond <- RoomFirstDungeonGenerator
+WallGenerator <-- diamond
+WallGenerator --> TilemapVisualizer
+ProceduralGeneration <-- diamond
+Direction2D <- ProceduralGeneration
+
+@enduml
