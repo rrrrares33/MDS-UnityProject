@@ -23,6 +23,8 @@ namespace Gameplay
 
         public int Health { get; private set; }
 
+        bool isDead = false;
+
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -36,6 +38,9 @@ namespace Gameplay
     
         private void Update()
         {
+            if (isDead)
+                return;
+
             ProcessInputs();
         }
 
@@ -61,6 +66,12 @@ namespace Gameplay
         {
             _rb.velocity = Time.deltaTime * _movementSpeed * _moveDirection;
             _animator.SetBool(AnimatorParams.IsRunning, !_rb.velocity.Equals(Vector2.zero));
+        }
+
+        public void Die()
+        {
+            isDead = true;
+            FindObjectOfType<LevelManager>().Restart();
         }
     }
 }

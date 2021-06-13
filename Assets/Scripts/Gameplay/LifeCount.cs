@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Gameplay;
 
 public class LifeCount : MonoBehaviour
 {
@@ -17,13 +18,14 @@ public class LifeCount : MonoBehaviour
 
         if (livesRemaining == 0)
         {
-            Debug.Log("YOU LOST");
+            FindObjectOfType<PlayerController>().Die();
+            
         }
     }
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Return))
-        //    LoseLife();
+        if (Input.GetKeyDown(KeyCode.Return))
+            LoseLife();
     }
 }

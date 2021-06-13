@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Gameplay;
 
 public class HealthBar : MonoBehaviour
 {
@@ -18,13 +19,14 @@ public class HealthBar : MonoBehaviour
 
         if(health<=0)
         {
-            Debug.Log("YOU DIED");
+            FindObjectOfType<PlayerController>().Die();
+            
         }
     }
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Return))
-        //    LoseHealth(25);
+        if (Input.GetKeyDown(KeyCode.Return))
+            LoseHealth(25);
     }
 }
