@@ -1,0 +1,85 @@
+﻿name: Unity CI/CD
+
+on: [push, pull_request]
+
+jobs:
+  Test:
+    name: Test in ${{ matrix.testMode }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - .
+        testMode:
+          - playmode
+          - editmode
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2.3.4
+        with:
+          lfs: true
+      - name: Cache Library
+        uses: actions/cache@v2.1.6
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}
+          restore-keys: |
+            Library-
+      - name: Run Tests
+        uses: game-ci/unity-test-runner@v2.0-alpha-5
+        id: tests
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: ${{ matrix.testMode }}-artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Test-${{ matrix.testMode }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2.2.3
+        if: always()
+        with:
+          name: Test results for ${{ matrix.testMode }}
+          path: ${{ steps.tests.outputs.artifactsPath }}
+
+  Build:
+    name: Build for ${{ matrix.targetPlatform }}
+    needs: Test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneOSX
+          - StandaloneWindows
+          - StandaloneWindows64
+          - StandaloneLinux64
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Cache Library
+        uses: actions/cache@v2.1.6
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+      - name: Build Project
+        uses: game-ci/unity-builder@v2.0-alpha-10
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
