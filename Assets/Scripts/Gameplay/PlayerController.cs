@@ -1,4 +1,5 @@
 ﻿using Behaviours;
+using Managers;
 using UnityEngine;
 
 namespace Gameplay
@@ -20,10 +21,9 @@ namespace Gameplay
         private float _movementSpeed;
 
         private Vector2 _moveDirection;
+        private bool _isDead;
 
         public int Health { get; private set; }
-
-        bool isDead = false;
 
         private void Start()
         {
@@ -38,8 +38,10 @@ namespace Gameplay
     
         private void Update()
         {
-            if (isDead)
+            if (_isDead)
+            {
                 return;
+            }
 
             ProcessInputs();
         }
@@ -70,8 +72,8 @@ namespace Gameplay
 
         public void Die()
         {
-            isDead = true;
-            FindObjectOfType<LevelManager>().Restart();
+            _isDead = true;
+            LevelManager.Restart();
         }
     }
 }
