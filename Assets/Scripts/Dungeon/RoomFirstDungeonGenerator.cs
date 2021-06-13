@@ -85,7 +85,7 @@ namespace Dungeon
         private static IEnumerable<Vector2Int> ConnectRooms(IList<Vector2Int> roomCenters)
         {
             var corridors = new HashSet<Vector2Int>();
-            var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count - 1)];
+            var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
         
             roomCenters.Remove(currentRoomCenter);
             while (roomCenters.Count > 0)

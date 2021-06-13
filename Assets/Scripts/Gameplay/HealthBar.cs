@@ -1,32 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using Gameplay;
 
-public class HealthBar : MonoBehaviour
+namespace Gameplay
 {
-    public Image fillBar;
-    public float health;
-
-    public void LoseHealth(int value)
+    public class HealthBar : MonoBehaviour
     {
-        if (health <= 0)
-            return;
+        public Image fillBar;
+        public float health;
 
-        health = health - value;
-        fillBar.fillAmount = health / 100;
-
-        if(health<=0)
+        public void LoseHealth(int value)
         {
-            FindObjectOfType<PlayerController>().Die();
-            
-        }
-    }
+            if (health <= 0)
+                return;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-            LoseHealth(25);
+            health = health - value;
+            fillBar.fillAmount = health / 100;
+
+            if(health<=0)
+            {
+                FindObjectOfType<PlayerController>().Die();
+            
+            }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+                LoseHealth(25);
+        }
     }
 }

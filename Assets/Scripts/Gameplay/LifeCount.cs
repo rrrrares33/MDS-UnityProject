@@ -1,31 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using Gameplay;
 
-public class LifeCount : MonoBehaviour
+namespace Gameplay
 {
-    public Image[] lives;
-    public int livesRemaining;
-
-    public void LoseLife()
+    public class LifeCount : MonoBehaviour
     {
-        if (livesRemaining == 0)
-            return;
-        livesRemaining--;
-        lives[livesRemaining].enabled = false;
+        public Image[] lives;
+        public int livesRemaining;
 
-        if (livesRemaining == 0)
+        public void LoseLife()
         {
-            FindObjectOfType<PlayerController>().Die();
-            
-        }
-    }
+            if (livesRemaining == 0)
+                return;
+            livesRemaining--;
+            lives[livesRemaining].enabled = false;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-            LoseLife();
+            if (livesRemaining == 0)
+            {
+                FindObjectOfType<PlayerController>().Die();
+            
+            }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+                LoseLife();
+        }
     }
 }
