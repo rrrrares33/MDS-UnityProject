@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e693a78c2bf6ab4fbbef08e9701df5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generator: {fileID: 110845406}
+  generator: {fileID: 1068080356}
   playerAvatar: {fileID: 571334396730248518, guid: 55e63eb449a910f4b8f7efa5c1105f3f, type: 3}
   playerWeapon: {fileID: 4933510560980130035, guid: 08773cb0402fd2442b620f485f50b962, type: 3}
   mainCamera: {fileID: 6743981145702129410, guid: 7c1d7b377851297488f3fb99e40bec02, type: 3}
