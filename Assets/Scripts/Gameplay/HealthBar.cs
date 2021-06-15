@@ -18,8 +18,7 @@ namespace Gameplay
 
             if(health<=0)
             {
-                FindObjectOfType<PlayerController>().Die();
-            
+
             }
         }
 

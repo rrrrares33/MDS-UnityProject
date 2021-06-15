@@ -17,8 +17,7 @@ namespace Gameplay
 
             if (livesRemaining == 0)
             {
-                FindObjectOfType<PlayerController>().Die();
-            
+                
             }
         }
 

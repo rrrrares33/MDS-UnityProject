@@ -14,7 +14,7 @@ namespace Managers
     
         private void Update()
         {
-            var newHealthText = "Health: " + player.Health;
+            var newHealthText = "Health: ";
             if (newHealthText != healthUI.text)
             {
                 healthUI.SetText(newHealthText);
