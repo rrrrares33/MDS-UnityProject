@@ -2,10 +2,9 @@
 
 namespace Utils
 {
-    public class Singleton<T> : MonoBehaviour where T : Component
+    public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
         private static T _instance;
-
         public static T Instance
         {
             get

@@ -1,7 +1,6 @@
 ﻿#pragma warning disable 0649
 
-using Gameplay;
-using TMPro;
+using Dungeon;
 using UnityEngine;
 using Utils;
 
@@ -9,16 +8,13 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private PlayerController player;
-        [SerializeField] private TextMeshProUGUI healthUI;
-    
-        private void Update()
+        [SerializeField] private GameObject player;
+        [SerializeField] private DungeonGenerator generator;
+
+        private void Start()
         {
-            var newHealthText = "Health: ";
-            if (newHealthText != healthUI.text)
-            {
-                healthUI.SetText(newHealthText);
-            }
+            generator.GenerateDungeon();
+            Instantiate(player, Vector3.zero, Quaternion.identity);
         }
     }
 }

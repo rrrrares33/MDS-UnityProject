@@ -1,5 +1,6 @@
 ﻿#pragma warning disable 0649
 
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
@@ -17,28 +18,47 @@ namespace Gameplay
         {
             base.Start();
             
+            var enemyMask = LayerMask.NameToLayer("Enemy");
+            Physics2D.IgnoreLayerCollision(enemyMask, enemyMask);
+            
             _hasTarget = target != null;
         }
 
-        private void Update()
+        protected override void Update()
+        {
+            base.Update();
+            if (IsDead)
+            {
+                Destroy(gameObject);
+            }
+            MoveToTarget();
+        }
+
+        private void MoveToTarget()
         {
             if (!_hasTarget)
             {
                 return;
             }
-
-            Move();
-        }
-
-        private void Move()
-        {
+            
+            var thisTransform = transform;
             var targetPosition = (Vector2) target.transform.position;
-            var distance = Vector2.Distance(transform.position, targetPosition);
-            var orientation = distance > stoppingDistance ?
-                1.0f : distance <= retreatDistance ?
-                    -1.0f : 0.0f;
+            
+            var distance = Vector2.Distance(thisTransform.position, targetPosition);
+            var orientation = distance > stoppingDistance ? 1.0f :
+                distance <= retreatDistance ? -1.0f : 0.0f;
             
             MoveDirection = orientation * (Vector2) transform.InverseTransformPoint(targetPosition).normalized;
+            MoveDirection.x *= Mathf.Sign(thisTransform.localScale.x);
+        }
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.GetComponent<PlayerController>()
+                    .ReceiveDamage(new Damage(other.transform.position, 1, 3.0f));
+            }
         }
     }
 }
