@@ -1,6 +1,5 @@
 ﻿#pragma warning disable 0649
 
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
@@ -11,7 +10,7 @@ namespace Gameplay
         [SerializeField] private float stoppingDistance = 2.0f;
         [SerializeField] private float retreatDistance = 1.8f;
 
-        [SerializeField] private GameObject target;
+        [SerializeField] private Transform target;
         private bool _hasTarget;
 
         protected override void Start()
@@ -21,6 +20,10 @@ namespace Gameplay
             var enemyMask = LayerMask.NameToLayer("Enemy");
             Physics2D.IgnoreLayerCollision(enemyMask, enemyMask);
             
+            if (target != null)
+            {
+                target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            }
             _hasTarget = target != null;
         }
 
@@ -42,7 +45,7 @@ namespace Gameplay
             }
             
             var thisTransform = transform;
-            var targetPosition = (Vector2) target.transform.position;
+            var targetPosition = (Vector2) target.position;
             
             var distance = Vector2.Distance(thisTransform.position, targetPosition);
             var orientation = distance > stoppingDistance ? 1.0f :
@@ -57,8 +60,13 @@ namespace Gameplay
             if (other.gameObject.CompareTag("Player"))
             {
                 other.GetComponent<PlayerController>()
-                    .ReceiveDamage(new Damage(other.transform.position, 1, 3.0f));
+                    .ReceiveDamage(new Damage(other.transform.position, 1, 5.0f));
             }
+        }
+
+        public void SetTarget(Transform newTarget)
+        {
+            target = newTarget;
         }
     }
 }

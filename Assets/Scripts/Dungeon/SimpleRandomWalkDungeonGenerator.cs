@@ -13,9 +13,9 @@ namespace Dungeon
 
         protected override void RunProceduralGeneration()
         {
-            var floorPositions = GetRandomWalkPath(startPosition, simpleRandomWalkData);
-            visualizer.PaintFloorTiles(floorPositions);
-            WallGenerator.CreateWalls(visualizer, floorPositions);
+            FloorPositions = GetRandomWalkPath(startPosition, simpleRandomWalkData);
+            visualizer.PaintFloorTiles(FloorPositions);
+            WallGenerator.CreateWalls(visualizer, FloorPositions);
         }
 
         protected static ICollection<Vector2Int> GetRandomWalkPath(

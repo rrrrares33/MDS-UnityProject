@@ -26,9 +26,10 @@ namespace Dungeon
             var roomFloors = CreateRooms(possibleRoomPositions);
             CreateRoomsAtDeadEnds(roomFloors, FindDeadEnds(floorPositions));
             floorPositions.UnionWith(roomFloors);
-        
-            visualizer.PaintFloorTiles(floorPositions);
-            WallGenerator.CreateWalls(visualizer, floorPositions);
+
+            FloorPositions = floorPositions;
+            visualizer.PaintFloorTiles(FloorPositions);
+            WallGenerator.CreateWalls(visualizer, FloorPositions);
         }
 
         private void CreateCorridors(ISet<Vector2Int> floorPositions, ISet<Vector2Int> possibleRoomPositions)

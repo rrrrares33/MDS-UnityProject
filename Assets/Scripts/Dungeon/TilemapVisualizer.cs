@@ -24,6 +24,9 @@ namespace Dungeon
         [SerializeField] private List<TileBase> wallDiagonalCornerDownRight;
         [SerializeField] private List<TileBase> wallDiagonalCornerUpLeft;
         [SerializeField] private List<TileBase> wallDiagonalCornerUpRight;
+        
+        [SerializeField] private float scaleMultiplier = 1.5f;
+        public float ScaleMultiplier => scaleMultiplier;
 
         public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
         {
@@ -54,27 +57,27 @@ namespace Dungeon
         
             if (WallTypes.WallTop.Contains(intType))
             {
-                tile = wallTop[Random.Range(0, wallTop.Count)];
+                tile = wallTop[Random.Range(0, wallTop.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallLeft.Contains(intType))
             {
-                tile = wallLeft[Random.Range(0, wallLeft.Count)];
+                tile = wallLeft[Random.Range(0, wallLeft.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallRight.Contains(intType))
             {
-                tile = wallRight[Random.Range(0, wallRight.Count)];
+                tile = wallRight[Random.Range(0, wallRight.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallBottom.Contains(intType))
             {
-                tile = wallBottom[Random.Range(0, wallBottom.Count)];
+                tile = wallBottom[Random.Range(0, wallBottom.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallFull.Contains(intType))
             {
-                tile = wallFull[Random.Range(0, wallFull.Count)];
+                tile = wallFull[Random.Range(0, wallFull.Count - 1)];
                 tileIsNull = false;
             }
 
@@ -94,42 +97,42 @@ namespace Dungeon
         
             if (WallTypes.WallInnerCornerDownLeft.Contains(intType))
             {
-                tile = wallInnerCornerDownLeft[Random.Range(0, wallInnerCornerDownLeft.Count)];
+                tile = wallInnerCornerDownLeft[Random.Range(0, wallInnerCornerDownLeft.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallInnerCornerDownRight.Contains(intType))
             {
-                tile = wallInnerCornerDownRight[Random.Range(0, wallInnerCornerDownRight.Count)];
+                tile = wallInnerCornerDownRight[Random.Range(0, wallInnerCornerDownRight.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallDiagonalCornerDownLeft.Contains(intType))
             {
-                tile = wallDiagonalCornerDownLeft[Random.Range(0, wallDiagonalCornerDownLeft.Count)];
+                tile = wallDiagonalCornerDownLeft[Random.Range(0, wallDiagonalCornerDownLeft.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallDiagonalCornerDownRight.Contains(intType))
             {
-                tile = wallDiagonalCornerDownRight[Random.Range(0, wallDiagonalCornerDownRight.Count)];
+                tile = wallDiagonalCornerDownRight[Random.Range(0, wallDiagonalCornerDownRight.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallDiagonalCornerUpLeft.Contains(intType))
             {
-                tile = wallDiagonalCornerUpLeft[Random.Range(0, wallDiagonalCornerUpLeft.Count)];
+                tile = wallDiagonalCornerUpLeft[Random.Range(0, wallDiagonalCornerUpLeft.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallDiagonalCornerUpRight.Contains(intType))
             {
-                tile = wallDiagonalCornerUpRight[Random.Range(0, wallDiagonalCornerUpRight.Count)];
+                tile = wallDiagonalCornerUpRight[Random.Range(0, wallDiagonalCornerUpRight.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallFullEightDirections.Contains(intType))
             {
-                tile = wallFull[Random.Range(0, wallFull.Count)];
+                tile = wallFull[Random.Range(0, wallFull.Count - 1)];
                 tileIsNull = false;
             }
             else if (WallTypes.WallBottomEightDirections.Contains(intType))
             {
-                tile = wallBottom[Random.Range(0, wallBottom.Count)];
+                tile = wallBottom[Random.Range(0, wallBottom.Count - 1)];
                 tileIsNull = false;
             }
 
@@ -145,6 +148,15 @@ namespace Dungeon
         {
             floorTilemap.ClearAllTiles();
             wallTilemap.ClearAllTiles();
+
+            floorTilemap.gameObject.transform.localScale = Vector3.one;
+            wallTilemap.gameObject.transform.localScale = Vector3.one;
+        }
+
+        public void ResetScale()
+        {
+            floorTilemap.gameObject.transform.localScale *= scaleMultiplier;
+            wallTilemap.gameObject.transform.localScale *= scaleMultiplier;
         }
     }
 }

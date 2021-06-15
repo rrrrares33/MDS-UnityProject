@@ -38,8 +38,9 @@ namespace Dungeon
                 .Select(room => (Vector2Int) Vector3Int.RoundToInt(room.center))
                 .ToList()));
 
-            visualizer.PaintFloorTiles(floorPositions);
-            WallGenerator.CreateWalls(visualizer, floorPositions);
+            FloorPositions = floorPositions;
+            visualizer.PaintFloorTiles(FloorPositions);
+            WallGenerator.CreateWalls(visualizer, FloorPositions);
         }
 
         private HashSet<Vector2Int> CreateSimpleRooms(IEnumerable<BoundsInt> roomList)
@@ -85,7 +86,7 @@ namespace Dungeon
         private static IEnumerable<Vector2Int> ConnectRooms(IList<Vector2Int> roomCenters)
         {
             var corridors = new HashSet<Vector2Int>();
-            var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
+            var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count - 1)];
         
             roomCenters.Remove(currentRoomCenter);
             while (roomCenters.Count > 0)

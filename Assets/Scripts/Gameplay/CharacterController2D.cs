@@ -126,5 +126,10 @@ namespace Gameplay
             Destroy(_rigidbody);
             Destroy(_renderer);
         }
+
+        public void SetWeapon(Weapon newWeapon)
+        {
+            weapon = newWeapon;
+        }
     }
 }
