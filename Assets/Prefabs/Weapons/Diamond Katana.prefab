@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDamage: 5
   startPushForce: 1
-  startAttackInterval: 4
+  startAttackInterval: 1
 --- !u!95 &3689177622546106562
 Animator:
   serializedVersion: 3
