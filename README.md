@@ -2,7 +2,7 @@
 #### This game can be built from its own release or its launcher's release. The game launcher is available [right here!](https://github.com/bUsernameIsUnavailable/MDS-WPFLauncher)
 
 # Demo 
-Un demo scurt al proiectului poate fi regasit la adresa: https://www.youtube.com/playlist?list=PLULUoHU4FGAWN7UxblTG5xYr2jG9ETWZK .
+Un demo scurt al proiectului poate fi regăsit [chiar aici!](https://www.youtube.com/playlist?list=PLULUoHU4FGAWN7UxblTG5xYr2jG9ETWZK)
   
  # Membrii echipei
  <ul>
