@@ -9,8 +9,22 @@ namespace Data.SimpleRandomWalk
         [SerializeField] private int walkLength = 10;
         [SerializeField] private bool startEachIterationRandomly = true;
 
-        public int Iterations => iterations;
-        public int WalkLength => walkLength;
-        public bool StartEachIterationRandomly => startEachIterationRandomly;
+        public int Iterations
+        {
+            get => iterations;
+            set => iterations = value;
+        }
+
+        public int WalkLength
+        {
+            get => walkLength;
+            set => walkLength = value;
+        }
+
+        public bool StartEachIterationRandomly
+        {
+            get => startEachIterationRandomly;
+            set => startEachIterationRandomly = value;
+        }
     }
 }

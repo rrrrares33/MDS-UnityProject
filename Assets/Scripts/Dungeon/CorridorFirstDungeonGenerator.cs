@@ -28,8 +28,6 @@ namespace Dungeon
             floorPositions.UnionWith(roomFloors);
 
             FloorPositions = floorPositions;
-            visualizer.PaintFloorTiles(FloorPositions);
-            WallGenerator.CreateWalls(visualizer, FloorPositions);
         }
 
         private void CreateCorridors(ISet<Vector2Int> floorPositions, ISet<Vector2Int> possibleRoomPositions)

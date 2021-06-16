@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7676347402061802023}
   - component: {fileID: 7676347402061802020}
   - component: {fileID: 7676347402061802022}
-  m_Layer: 10
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Layer: 8
+  m_Name: Chort
+  m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,10 +159,9 @@ MonoBehaviour:
   startMovementSpeed: 350
   startHealth: 2
   startPushRecoverySpeed: 0.1
-  startImmunityTime: 1
+  startImmunityTime: 0.4
   stoppingDistance: 0
   retreatDistance: 0
-  target: {fileID: 0}
 --- !u!1 &7676347402433186201
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +177,7 @@ GameObject:
   m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7676347402433186206
 Transform:

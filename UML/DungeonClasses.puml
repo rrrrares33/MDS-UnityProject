@@ -27,9 +27,12 @@ abstract class DungeonGenerator
 {
     #visualizer: TilemapVisualizer
     #startPosition: Vector2Int
+    +FloorPositions: ICollection<Vector2Int>
     
-    +GenerateDungeon(): void
+    +GenerateDungeon(drawTiles: bool): void
+    +ClearDungeon(): void
     #RunProceduralGeneration(): void
+    +GetRandomFloorPosition(): Vector2
 }
 
 class SimpleRandomWalkDungeonGenerator
@@ -38,6 +41,7 @@ class SimpleRandomWalkDungeonGenerator
     
     #RunProceduralGeneration(): void
     #GetRandomWalkPath(position: Vector2Int, simpleRandomWalkParams: SimpleRandomWalkData): ICollection<Vector2Int>
+    +SetSimpleRandomWalkData(newSimpleRandomWalkData: SimpleRandomWalkData): void
 }
 
 class SimpleRandomWalkData
@@ -45,10 +49,6 @@ class SimpleRandomWalkData
     -iterations: int
     -walkLength: int
     -startEachIterationRandomly: bool
-    
-    +Iterations(): int
-    +WalkLength(): int
-    +StartEachIterationRandomly(): bool
 }
 
 class CorridorFirstDungeonGenerator

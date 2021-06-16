@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Editor
 {
     [CustomEditor(typeof(DungeonGenerator), true)]
-    public class DungeonGeneratorEditor : UnityEditor.Editor
+    internal class DungeonGeneratorEditor : UnityEditor.Editor
     {
         private DungeonGenerator _generator;
 
@@ -20,6 +20,11 @@ namespace Editor
             if (GUILayout.Button("Generate Dungeon"))
             {
                 _generator.GenerateDungeon();
+            }
+
+            if (GUILayout.Button("Clear Dungeon"))
+            {
+                _generator.ClearDungeon();
             }
         }
     }

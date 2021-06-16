@@ -1,7 +1,7 @@
 ﻿#pragma warning disable 0649
 
-using Behaviours;
 using UnityEngine;
+using Utils;
 
 namespace Gameplay
 {
@@ -26,7 +26,6 @@ namespace Gameplay
         private static readonly Vector3 LeftFace = new Vector3(-1.0f, 1.0f, 1.0f);
 
         private Vector3 _pushDirection;
-        
         protected Vector2 MoveDirection = Vector2.zero;
         protected bool IsAttacking;
         protected bool IsDead;

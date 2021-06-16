@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 571334396730248515}
   - component: {fileID: 571334396730248527}
   - component: {fileID: 571334396730248514}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Knight
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,5 +157,5 @@ MonoBehaviour:
   weapon: {fileID: 0}
   startMovementSpeed: 500
   startHealth: 6
-  startPushRecoverySpeed: 0.2
+  startPushRecoverySpeed: 0.5
   startImmunityTime: 1

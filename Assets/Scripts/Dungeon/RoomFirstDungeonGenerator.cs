@@ -39,8 +39,6 @@ namespace Dungeon
                 .ToList()));
 
             FloorPositions = floorPositions;
-            visualizer.PaintFloorTiles(FloorPositions);
-            WallGenerator.CreateWalls(visualizer, FloorPositions);
         }
 
         private HashSet<Vector2Int> CreateSimpleRooms(IEnumerable<BoundsInt> roomList)

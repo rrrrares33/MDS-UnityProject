@@ -1,8 +1,8 @@
-﻿{
-    "name": "Scripts",
+{
+    "name": "Dungeon",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:6546d7765b4165b40850b3667f981c26"
+        "GUID:10121c6af13b49ef9e512fecfbaaf781",
+        "GUID:373dead8bb95473881e21250a502ffec"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,5 +1,5 @@
-﻿using Behaviours;
-using UnityEngine;
+﻿using UnityEngine;
+using Utils;
 
 namespace Gameplay
 {
@@ -44,7 +44,7 @@ namespace Gameplay
             var character = GetComponent<CharacterController2D>();
             if (character != null)
             {
-                Physics2D.IgnoreLayerCollision(11, character.gameObject.layer);
+                Physics2D.IgnoreLayerCollision((int) Layers.Weapon, character.gameObject.layer);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Gameplay
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Enemy"))
+            if (!other.gameObject.CompareTag(Tags.Player) && !other.gameObject.CompareTag(Tags.Enemy))
             {
                 return;
             }

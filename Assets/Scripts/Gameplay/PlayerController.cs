@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utils;
 
 namespace Gameplay
 {
@@ -8,7 +9,7 @@ namespace Gameplay
         {
             base.Start();
             
-            var playerMask = LayerMask.NameToLayer("Player");
+            var playerMask = LayerMask.NameToLayer(Layers.Player.ToString());
             Physics2D.IgnoreLayerCollision(playerMask, playerMask);
         }
         

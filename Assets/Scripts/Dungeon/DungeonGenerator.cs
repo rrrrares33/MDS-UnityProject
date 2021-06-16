@@ -9,13 +9,29 @@ namespace Dungeon
         [SerializeField] protected TilemapVisualizer visualizer;
         [SerializeField] protected Vector2Int startPosition = Vector2Int.zero;
 
-        protected ICollection<Vector2Int> FloorPositions;
+        public ICollection<Vector2Int> FloorPositions { get; protected set; }
 
-        public void GenerateDungeon()
+        public void GenerateDungeon(bool drawTiles = true)
+        {
+            if (drawTiles)
+            {
+                ClearDungeon();
+            }
+            
+            RunProceduralGeneration();
+            if (!drawTiles)
+            {
+                return;
+            }
+
+            visualizer.PaintFloorTiles(FloorPositions);
+            WallGenerator.CreateWalls(visualizer, FloorPositions);
+            visualizer.ResetScale();
+        }
+
+        public void ClearDungeon()
         {
             visualizer.Clear();
-            RunProceduralGeneration();
-            visualizer.ResetScale();
         }
 
         protected abstract void RunProceduralGeneration();
