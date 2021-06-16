@@ -1,5 +1,8 @@
-﻿# Dungeon Master
+# Dungeon Master
 #### This game can be built from its own release or its launcher's release. The game launcher is available [right here!](https://github.com/bUsernameIsUnavailable/MDS-WPFLauncher)
+
+# Demo 
+Un demo scurt al proiectului poate fi regasit la adresa: https://www.youtube.com/playlist?list=PLULUoHU4FGAXcJky7CBuof_mTgM9BCVC2 .
   
  # Membrii echipei
  <ul>
