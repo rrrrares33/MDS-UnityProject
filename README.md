@@ -3,9 +3,9 @@
   
  # Team members :
  <ul>
-  <li>Kaya Adrian Nazir</li>
+  <li>Kaya Adrian</li>
   <li>Gherasim Rares</li>
-  <li>Petrino </li>
+  <li>Popa-Podarasu Ioan-Petrino </li>
  </ul>
 
 # User stories : 
@@ -31,6 +31,8 @@ Pentru partea de branch-uri am lucrat pe un singur branch, pe cel denumit master
 ![image](https://user-images.githubusercontent.com/61795553/122229137-2930b500-cec1-11eb-8678-3b5b321d137f.png)
 
 # Teste automate :
+
+![image](https://user-images.githubusercontent.com/61795553/122232905-4915a800-cec4-11eb-9243-6778a9057bd1.png)
 
 
 # Bug reporting :
