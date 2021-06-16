@@ -45,7 +45,7 @@ namespace Managers
 
             var weapon = Instantiate(playerWeapon);
             weapon.transform.parent = player.transform;
-            player.GetComponent<PlayerController>().SetWeapon(weapon.GetComponent<Weapon>());
+            player.GetComponent<PlayerController>().SetWeapon(weapon);
 
             return player;
         }

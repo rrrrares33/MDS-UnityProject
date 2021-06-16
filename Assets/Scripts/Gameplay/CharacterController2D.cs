@@ -7,7 +7,8 @@ namespace Gameplay
 {
     public abstract class CharacterController2D : MonoBehaviour
     {
-        [SerializeField] private Weapon weapon;
+        [SerializeField] private GameObject weaponObject;
+        private Weapon _weapon;
         private bool _hasWeapon;
         
         [SerializeField] private float startMovementSpeed = 500.0f;
@@ -36,7 +37,11 @@ namespace Gameplay
 
         protected virtual void Start()
         {
-            _hasWeapon = weapon != null;
+            if (weaponObject != null)
+            {
+                _weapon = weaponObject.GetComponent<Weapon>();
+            }
+            _hasWeapon = _weapon != null;
             
             _movementSpeed = startMovementSpeed;
             _health = startHealth;
@@ -97,7 +102,7 @@ namespace Gameplay
                 return;
             }
 
-            weapon.Use();
+            _weapon.Use();
         }
 
         public void ReceiveDamage(Damage damage)
@@ -126,9 +131,16 @@ namespace Gameplay
             Destroy(_renderer);
         }
 
-        public void SetWeapon(Weapon newWeapon)
+        public GameObject GetWeapon()
         {
-            weapon = newWeapon;
+            return weaponObject;
+        }
+        
+        public void SetWeapon(GameObject newWeaponObject)
+        {
+            weaponObject = newWeaponObject;
+            _weapon = newWeaponObject.GetComponent<Weapon>();
+            _hasWeapon = _weapon != null;
         }
     }
 }

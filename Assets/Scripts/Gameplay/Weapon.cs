@@ -30,7 +30,7 @@ namespace Gameplay
         private float _attackInterval;
         private float _lastAttackTime;
 
-        private Animator _animator;
+        public Animator Animator { get; set; }
 
         private void Start()
         {
@@ -39,7 +39,7 @@ namespace Gameplay
             _attackInterval = startAttackInterval;
             _lastAttackTime = -_attackInterval;
 
-            _animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
 
             var character = GetComponent<CharacterController2D>();
             if (character != null)
@@ -56,7 +56,7 @@ namespace Gameplay
             }
             
             _lastAttackTime = Time.time;
-            _animator.SetTrigger(AnimatorParams.Swing);
+            Animator.SetTrigger(AnimatorParams.Swing);
         }
 
         public void OnTriggerEnter2D(Collider2D other)

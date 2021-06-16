@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09aa6d48525363949971d4b5cd15975d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weaponObject: {fileID: 0}
   startMovementSpeed: 500
-  startHealth: 6
+  startHealth: 10
   startPushRecoverySpeed: 0.5
   startImmunityTime: 1
