@@ -27,7 +27,7 @@ Pentru a instala proiectul este suficient să avem launcher-ul prezent în primu
 # UML
 Acesta este realizat doar pentru generatorul hărții, care este unul aleator, iar la fieceare rulare generează harta altfel. Schema UML este urmatoarea (MonoBehaviour este o parte implementată deja în Unity, restul sunt implementate de noi):
 
-![image](https://user-images.githubusercontent.com/61795553/122226859-06050600-cebf-11eb-99d2-4e347898a74f.png)
+![image](https://user-images.githubusercontent.com/61911973/122295406-d1ff0480-cf01-11eb-884e-b1cb6f117590.png)
 
 
 # Source control
