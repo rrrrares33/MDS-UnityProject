@@ -135,6 +135,7 @@ class WallTypes
 }
 
 TilemapVisualizer <|-- MonoBehaviour
+DungeonGenerator <|-- MonoBehaviour
 TilemapVisualizer -> WallTypes
 DungeonGenerator "1" *- "1" TilemapVisualizer
 SimpleRandomWalkDungeonGenerator <|-- DungeonGenerator
